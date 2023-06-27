@@ -87,7 +87,7 @@ export function useGameData(userID) {
     else {
       axios.put(`api/calculate/${turn.id}`, { questionLat: turn.latitude, questionLon: turn.longitude, answerLat: position.lat, answerLon: position.lng })
         .then(response => {
-          showResult(`You are ${response.data.distanceKm}km away.`, `You are ${response.data.distanceKm}km away.\n Your score is ${response.data.score}.`);
+          showResult(`You are ${response.data.distanceKm}km away.`, `You are ${response.data.distanceKm}km away.\n Your score is ${response.data.turnScore}.`);
 
           //remember turn result in the state to use in the gameSummary
           turn.score = response.data.score;
@@ -123,6 +123,6 @@ export function useGameData(userID) {
     summary,
     score,
     playAgain,
-    nextTurn, 
+    nextTurn
   };
 }
