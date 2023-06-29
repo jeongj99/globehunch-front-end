@@ -16,6 +16,9 @@ const constructBackendURL = () => {
     const sanitizedHostname = sanitizeHostname(hostname);
     backendURL = `http://${sanitizedHostname}:${port}`;
   } else {
+    // Handle invalid hostname case
+    // You can either throw an error, use a default URL, or handle it based on your application's requirements
+    // Example: Use a default URL
     backendURL = `http://localhost:${port}`;
   }
 
