@@ -8,7 +8,7 @@ import AuthContext from '../context/AuthProvider';
 import './LoginForm.css';
 import { RiErrorWarningLine } from 'react-icons/ri';
 
-export default function LoginForm(props) {
+export default function LoginForm() {
   const [emailLogin, setEmailLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
