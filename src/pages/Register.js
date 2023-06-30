@@ -3,14 +3,14 @@ import Video from "../components/Home/Video";
 
 import "./Register.css";
 
-export default function Register(props) {
+export default function Register() {
   return (
     <>
       <Video />
       <div className="register-container">
         <div className="register-form">
           <h1>Register</h1>
-          <RegisterForm setUser={props.setUser} setUserID={props.setUserID} />
+          <RegisterForm />
         </div>
       </div>
     </>
