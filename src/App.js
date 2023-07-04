@@ -25,8 +25,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={auth ? <Navigate to="/" /> : <Login />} />
           <Route path="/register" element={auth ? <Navigate to="/" /> : <Register />} />
-          <Route path="/leaderboard" element={auth ? <Leaderboard userID={userID} /> : <Navigate to="/login" />} />
-          <Route path="/game" element={auth ? <Game userID={userID} /> : <Navigate to="/login" />} />
+          <Route path="/leaderboard" element={auth ? <Leaderboard /> : <Navigate to="/login" />} />
+          <Route path="/game" element={auth ? <Game /> : <Navigate to="/login" />} />
           <Route path="/tutorial" element={<Tutorial />} />
         </Routes>
       </BrowserRouter>
