@@ -18,8 +18,8 @@ export const AuthProvider = ({ children }) => {
       setAuth(false);
       setLoggedInUser(null);
     }
+    setIsReady(true);
   };
-  setIsReady(true);
 
   useEffect(() => {
     authenticate();
