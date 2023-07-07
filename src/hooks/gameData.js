@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from '../api/axios';
 
 export function useGameData(userID) {
-  const [state, setState] = useState(null);
+  const [gameState, setGameState] = useState(null);
 
   const [game, setGame] = useState(null);
   const [turn, setTurn] = useState(null);
@@ -15,7 +15,12 @@ export function useGameData(userID) {
   const [gameNumber, setGameNumber] = useState(1);
 
   const fetchGameData = async id => {
-    const gameResult = await axios.post('api/games');
+    try {
+      const gameResult = await axios.post('api/games', {});
+
+    } catch (error) {
+
+    }
   };
 
   // used by  summary to reset all states to initial values.
