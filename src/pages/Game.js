@@ -5,25 +5,16 @@ import Button from '../components/Button';
 import Popup from '../components/Popup';
 import NullPositionError from '../components/NullPositionError';
 import GameSummary from '../components/GameSummary';
-import { useGameData } from './hooks/gameData';
+import useGameData from '../hooks/gameData';
 
 export default function Game(props) {
-  let {
-    game,
-    turn,
-    popupMessage,
-    popupMessageClass,
-    position, setPosition,
-    errorState,
-    summary,
-    score,
-    playAgain,
-    nextTurn,
+  const {
+    gameState
   } = useGameData(props.userID);
 
   return (
     <main>
-      {(game && !summary) && (
+      {/* {(game && !summary) && (
         <>
           <GameStatus turnNumber={turn.turn_number} turnScore={score} />
           <QuestionMap turn={turn} />
@@ -34,7 +25,7 @@ export default function Game(props) {
       {popupMessage && (<Popup message={popupMessage} messageClass={popupMessageClass} />)}
       {errorState && (<NullPositionError />)}
 
-      {summary && (<GameSummary game={game} playAgain={playAgain} />)}
+      {summary && (<GameSummary game={game} playAgain={playAgain} />)} */}
     </main>
   );
 };
