@@ -3,9 +3,6 @@ import axios from '../api/axios';
 
 export default function useGameData(userID) {
   const [gameState, setGameState] = useState(null);
-
-  // const [game, setGame] = useState(null);
-  // const [turn, setTurn] = useState(null);
   // const [popupMessage, setPopupMessage] = useState(null);
   // const [popupMessageClass, setPopupMessageClass] = useState(null);
   // const [position, setPosition] = useState(null); //Lifted position state into game component so that it can be passed to answer map, as well as answer button to prevent answer button switching turn if no position set.
