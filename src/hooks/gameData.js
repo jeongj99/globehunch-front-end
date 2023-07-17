@@ -17,8 +17,7 @@ export default function useGameData(userID) {
   const fetchGameData = async () => {
     try {
       const gameResult = await axios.post('api/games', {});
-      console.log(gameResult);
-
+      setGameState(gameResult.data);
     } catch (error) {
       console.log(error);
     }
