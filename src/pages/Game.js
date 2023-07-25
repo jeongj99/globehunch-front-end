@@ -13,19 +13,19 @@ export default function Game(props) {
   } = useGameData(props.userID);
 
   return (
-    <main>
-      {/* {(game && !summary) && (
-        <>
-          <GameStatus turnNumber={turn.turn_number} turnScore={score} />
-          <QuestionMap turn={turn} />
-          <AnswerMap position={position} setPosition={setPosition} />
-          <Button position={position} onClick={nextTurn} className={"button-game-answer"} title={"Answer"} />
-        </>
-      )}
-      {popupMessage && (<Popup message={popupMessage} messageClass={popupMessageClass} />)}
-      {errorState && (<NullPositionError />)}
+    // <main>
+    //   {(game && !summary) && (
+    //     <>
+    //       <GameStatus turnNumber={turn.turn_number} turnScore={score} />
+    //       <QuestionMap turn={turn} />
+    //       <AnswerMap position={position} setPosition={setPosition} />
+    //       <Button position={position} onClick={nextTurn} className={"button-game-answer"} title={"Answer"} />
+    //     </>
+    //   )}
+    //   {popupMessage && (<Popup message={popupMessage} messageClass={popupMessageClass} />)}
+    //   {errorState && (<NullPositionError />)}
 
-      {summary && (<GameSummary game={game} playAgain={playAgain} />)} */}
-    </main>
+    //   {summary && (<GameSummary game={game} playAgain={playAgain} />)}
+    // </main>
   );
 };
