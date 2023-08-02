@@ -17,7 +17,7 @@ export default function Game(props) {
       {(gameState) && (
         <>
           <GameStatus turnNumber={gameState.currentTurn} turnScore={gameState.totalScore} />
-          <QuestionMap turn={turn} />
+          <QuestionMap gameState={gameState} />
           {/* <AnswerMap position={position} setPosition={setPosition} />
           <Button position={position} onClick={nextTurn} className={"button-game-answer"} title={"Answer"} /> */}
         </>
