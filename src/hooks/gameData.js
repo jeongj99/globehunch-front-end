@@ -93,10 +93,7 @@ export default function useGameData(userID) {
 
   // //Create a function that increments through array of turn objects and sets state to new turn object each time answer button is clicked
   // const nextTurn = function() {
-  //   if (position === null) {
-  //     showError();
-  //   }
-  //   else {
+  //   if (gameState) {
   //     axios.put(`api/calculate/${turn.id}`, { questionLat: turn.latitude, questionLon: turn.longitude, answerLat: position.lat, answerLon: position.lng })
   //       .then(response => {
   //         showResult(`You are ${response.data.distanceKm}km away.`, `You are ${response.data.distanceKm}km away.\n Your score is ${response.data.turnScore}.`);
