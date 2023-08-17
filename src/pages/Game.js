@@ -9,7 +9,8 @@ import useGameData from '../hooks/gameData';
 
 export default function Game(props) {
   const {
-    gameState
+    gameState,
+    setGameState
   } = useGameData(props.userID);
 
   return (
@@ -18,8 +19,8 @@ export default function Game(props) {
         <>
           <GameStatus turnNumber={gameState.currentTurn} turnScore={gameState.totalScore} />
           <QuestionMap gameState={gameState} />
-          {/* <AnswerMap position={position} setPosition={setPosition} />
-          <Button position={position} onClick={nextTurn} className={"button-game-answer"} title={"Answer"} /> */}
+          <AnswerMap gameState={gameState} setGameState={setGameState} />
+          {/* <Button position={position} onClick={nextTurn} className={"button-game-answer"} title={"Answer"} /> */}
         </>
       )}
       {/* {popupMessage && (<Popup message={popupMessage} messageClass={popupMessageClass} />)}
