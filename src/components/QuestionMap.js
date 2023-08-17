@@ -1,29 +1,42 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import BingMapsReact from "bingmaps-react";
+
+import "./QuestionMap.css";
 
 //This component houses the Bing Map, which show the player a random place on earth in which they will have to guess where they are.
 export default function QuestionMap({ gameState }) {
-  //Store BING API key in a variable and plug into component
-  const API_KEY = process.env.REACT_APP_API_KEY;
-  // const [isMapLoaded, setIsMapLoaded] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  const handleMapReady = () => {
+    setTimeout(() => {
+      setMapLoaded(true);
+    }, 400);
+  };
 
   return (
-    <BingMapsReact
-      onMapReady={() => true}
-      bingMapsKey={API_KEY}
-      height="100vh"
-      mapOptions={{
-        navigationBarMode: "square",
-      }}
-      width="100vh"
-      //Add key to component so that when lat and long change with turn state, so does key. Map component with old key will be removed entirley from DOM and map component with new key (using new lat long) is freshly mounted. This allows maps to change correctly!
-      key={`${gameState.turns[gameState.currentTurn - 1].latitude}-${gameState.turns[gameState.currentTurn - 1].longitude}`}//Apply key in order to remount new map component each time latitude and longitude change.
-      viewOptions={{
-        center: { latitude: gameState.turns[gameState.currentTurn - 1].latitude, longitude: gameState.turns[gameState.currentTurn - 1].longitude },
-        mapTypeId: "streetside",
-        // The pathway for overview map mode is defined as Microsoft.Maps.OverviewMapMode.hidden. Value at the end is 2. Simply used this number as key value to avoid conflicts and use of scripts for keys like "Microsoft" and "Maps"
-        streetsideOptions: { showExitButton: false, showCurrentAddress: false, overviewMapMode: 2 }
-      }}
-    />
+    <div className={`map-container ${mapLoaded ? "visible" : ""}`}>
+      <BingMapsReact
+        onMapReady={handleMapReady}
+        bingMapsKey={process.env.REACT_APP_API_KEY}
+        height="100vh"
+        mapOptions={{
+          navigationBarMode: "square",
+        }}
+        width="100vh"
+        key={`${gameState.turns[gameState.currentTurn - 1].latitude}-${gameState.turns[gameState.currentTurn - 1].longitude}`}
+        viewOptions={{
+          center: {
+            latitude: gameState.turns[gameState.currentTurn - 1].latitude,
+            longitude: gameState.turns[gameState.currentTurn - 1].longitude,
+          },
+          mapTypeId: "streetside",
+          streetsideOptions: {
+            showExitButton: false,
+            showCurrentAddress: false,
+            overviewMapMode: 2,
+          },
+        }}
+      />
+    </div>
   );
 }
