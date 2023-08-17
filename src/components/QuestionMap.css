@@ -1,0 +1,8 @@
+.map-container {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.map-container.visible {
+  opacity: 1;
+}
