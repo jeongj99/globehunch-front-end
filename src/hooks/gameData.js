@@ -123,7 +123,8 @@ export default function useGameData(userID) {
   // };
 
   return {
-    gameState
+    gameState,
+    setGameState
     // game,
     // turn,
     // popupMessage,
