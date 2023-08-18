@@ -24,6 +24,48 @@ export default function useGameData(userID) {
     fetchGameData();
   }, []);
 
+  //Create a function that increments through array of turn objects and sets state to new turn object each time answer button is clicked
+  const nextTurn = async () => {
+    if (gameState.turns[gameState.currentTurn - 1].answerPosition) {
+      try {
+        const result = await axios.put(`api/calculate/${gameState.turns[gameState.currentTurn - 1].id}`, {
+          questionLat: gameState.turns[gameState.currentTurn - 1].latitude,
+          questionLon: gameState.turns[gameState.currentTurn - 1].longitude,
+          answerLat: gameState.turns[gameState.currentTurn - 1].answerPosition.lat,
+          answerLon: gameState.turns[gameState.currentTurn - 1].answerPosition.lng
+        });
+
+        console.log(result);
+      } catch (error) {
+      }
+
+      //         .then(response => {
+      //         showResult(`You are ${response.data.distanceKm}km away.`, `You are ${response.data.distanceKm}km away.\n Your score is ${response.data.turnScore}.`);
+
+      //         //remember turn result in the state to use in the gameSummary
+      //         turn.score = response.data.score;
+      //         turn.distanceKm = response.data.distanceKm;
+
+      //         setTimeout(() => {
+      //           gameState.currentTurn++;
+      //         }, 5000);
+
+      //         if (turn === game.turns[0]) {
+      //           setTurn(game.turns[1]);
+      //           calculateScore();
+
+      //         }
+      //         if (turn === game.turns[1]) {
+      //           setTurn(game.turns[2]);
+      //           calculateScore();
+
+      //         } if (turn === game.turns[2]) {
+      //           calculateScore();
+      //         }
+      //       });
+    }
+  };
+
   // // used by  summary to reset all states to initial values.
   // function playAgain() {
   //   setGame(null);
@@ -91,40 +133,10 @@ export default function useGameData(userID) {
   //   }, 5000); //Calculate cumulative score after 5 seconds (length of time it takes for pop up to disappear)
   // }
 
-  // //Create a function that increments through array of turn objects and sets state to new turn object each time answer button is clicked
-  // const nextTurn = function() {
-  //   if (gameState) {
-  //     axios.put(`api/calculate/${turn.id}`, { questionLat: turn.latitude, questionLon: turn.longitude, answerLat: position.lat, answerLon: position.lng })
-  //       .then(response => {
-  //         showResult(`You are ${response.data.distanceKm}km away.`, `You are ${response.data.distanceKm}km away.\n Your score is ${response.data.turnScore}.`);
-
-  //         //remember turn result in the state to use in the gameSummary
-  //         turn.score = response.data.score;
-  //         turn.distanceKm = response.data.distanceKm;
-
-  //         setTimeout(() => {
-  //           setPosition(null);
-  //         }, 5000);
-
-  //         if (turn === game.turns[0]) {
-  //           setTurn(game.turns[1]);
-  //           calculateScore();
-
-  //         }
-  //         if (turn === game.turns[1]) {
-  //           setTurn(game.turns[2]);
-  //           calculateScore();
-
-  //         } if (turn === game.turns[2]) {
-  //           calculateScore();
-  //         }
-  //       });
-  //   }
-  // };
-
   return {
     gameState,
-    setGameState
+    setGameState,
+    nextTurn
     // game,
     // turn,
     // popupMessage,
@@ -136,4 +148,4 @@ export default function useGameData(userID) {
     // playAgain,
     // nextTurn
   };
-}
+};
