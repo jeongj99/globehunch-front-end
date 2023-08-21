@@ -35,6 +35,11 @@ export default function useGameData(userID) {
           answerLon: gameState.turns[gameState.currentTurn - 1].answerPosition.lng
         });
 
+        const updatedTurns = [...gameState.turns];
+        updatedTurns[gameState.currentTurn - 1].distance = result.data.distanceKm;
+        updatedTurns[gameState.currentTurn - 1].score = result.data.turnScore;
+        setGameState(prev => ({ ...prev, turns: updatedTurns }));
+
         console.log(result);
       } catch (error) {
       }
