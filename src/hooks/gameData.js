@@ -46,7 +46,8 @@ export default function useGameData(userID) {
 
         setTimeout(() => {
           const updatedTurn = gameState.currentTurn + 1;
-          setGameState(prev => ({ ...prev, currentTurn: updatedTurn }));
+          const cumulativeScore = gameState.totalScore + gameState.turns[gameState.currentTurn - 1].score;
+          setGameState(prev => ({ ...prev, currentTurn: updatedTurn, totalScore: cumulativeScore }));
         }, 5000);
 
         console.log(result);
