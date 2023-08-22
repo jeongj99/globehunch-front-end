@@ -38,7 +38,16 @@ export default function useGameData(userID) {
         const updatedTurns = [...gameState.turns];
         updatedTurns[gameState.currentTurn - 1].distance = result.data.distanceKm;
         updatedTurns[gameState.currentTurn - 1].score = result.data.turnScore;
-        setGameState(prev => ({ ...prev, turns: updatedTurns }));
+        setGameState(prev => ({ ...prev, turns: updatedTurns, popupMessageStatus: true }));
+
+        setTimeout(() => {
+          setGameState(prev => ({ ...prev, popupMessageStatus: false }));
+        }, 4900);
+
+        setTimeout(() => {
+          const updatedTurn = gameState.currentTurn + 1;
+          setGameState(prev => ({ ...prev, currentTurn: updatedTurn }));
+        }, 5000);
 
         console.log(result);
       } catch (error) {
@@ -51,9 +60,6 @@ export default function useGameData(userID) {
       //         turn.score = response.data.score;
       //         turn.distanceKm = response.data.distanceKm;
 
-      //         setTimeout(() => {
-      //           gameState.currentTurn++;
-      //         }, 5000);
 
       //         if (turn === game.turns[0]) {
       //           setTurn(game.turns[1]);
@@ -83,23 +89,6 @@ export default function useGameData(userID) {
   //   setScore(0);
   //   setGameNumber(gameNumber + 1);
   // }
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     //Use post request to create new game in DB, returns response object with information.
-  //     let response = await fetch(`http://localhost:8001/api/games/${userID}`, {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ user_id: userID }) //Here we pass the userID of individual logged in so it can be used in creation of game object.
-  //     });
-  //     //Store new game information from DB in a variable
-  //     let gameData = await response.json();
-  //     setGame(gameData); //This will set state of game to value of gameData object from DB
-  //     setTurn(gameData.turns[0]); //This will set the turn to the first first turn in the game
-  //   }
-
-  //   fetchData();
-  // }, [gameNumber]);
 
   // // showing congrats popup with score
   // function showResult(messageKm, messageKmScore) {
