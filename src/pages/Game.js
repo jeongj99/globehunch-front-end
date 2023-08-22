@@ -16,18 +16,18 @@ export default function Game(props) {
 
   return (
     <main>
-      {(gameState) && (
+      {gameState && (
         <>
           <GameStatus turnNumber={gameState.currentTurn} turnScore={gameState.totalScore} />
           <QuestionMap gameState={gameState} />
           <AnswerMap gameState={gameState} setGameState={setGameState} />
           <Button onClick={nextTurn} className="button-game-answer" />
+          <Popup gameState={gameState} />
+          {/* {errorState && (<NullPositionError />)} */}
+
+          {/* {summary && (<GameSummary game={game} playAgain={playAgain} />)} */}
         </>
       )}
-      {/* {popupMessage && (<Popup message={popupMessage} messageClass={popupMessageClass} />)}
-      {errorState && (<NullPositionError />)}
-
-      {summary && (<GameSummary game={game} playAgain={playAgain} />)} */}
     </main>
   );
 };
