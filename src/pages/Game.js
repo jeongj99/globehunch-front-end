@@ -23,7 +23,7 @@ export default function Game(props) {
           <AnswerMap gameState={gameState} setGameState={setGameState} />
           <Button onClick={nextTurn} className="button-game-answer" />
           <Popup gameState={gameState} />
-          {/* {errorState && (<NullPositionError />)} */}
+          <NullPositionError gameState={gameState} />
 
           {/* {summary && (<GameSummary game={game} playAgain={playAgain} />)} */}
         </>
