@@ -17,6 +17,31 @@
   font-size: 30pt;
   text-align: center;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.null-position-popup-container.visible {
+  display: flex;
+  flex-direction: column;
+  width: 612.63px;
+  height: 195.5px;
+  background-color: #19191a;
+  border-radius: 20px;
+  padding: 1em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30pt;
+  text-align: center;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .null-position-popup-title {
@@ -30,5 +55,5 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: xx-large;
   font-weight: 500;
-  color: white; 
+  color: white;
 }
