@@ -52,29 +52,14 @@ export default function useGameData(userID) {
 
         console.log(result);
       } catch (error) {
+        console.log(error);
       }
+    } else {
+      setGameState(prev => ({ ...prev, errorMessageStatus: true }));
 
-      //         .then(response => {
-      //         showResult(`You are ${response.data.distanceKm}km away.`, `You are ${response.data.distanceKm}km away.\n Your score is ${response.data.turnScore}.`);
-
-      //         //remember turn result in the state to use in the gameSummary
-      //         turn.score = response.data.score;
-      //         turn.distanceKm = response.data.distanceKm;
-
-
-      //         if (turn === game.turns[0]) {
-      //           setTurn(game.turns[1]);
-      //           calculateScore();
-
-      //         }
-      //         if (turn === game.turns[1]) {
-      //           setTurn(game.turns[2]);
-      //           calculateScore();
-
-      //         } if (turn === game.turns[2]) {
-      //           calculateScore();
-      //         }
-      //       });
+      setTimeout(() => {
+        setGameState(prev => ({ ...prev, errorMessageStatus: false }));
+      }, 2000);
     }
   };
 
@@ -119,13 +104,6 @@ export default function useGameData(userID) {
   //   setTimeout(() => {
   //     setErrorState(null);
   //   }, 3100);
-  // }
-
-  // //Function to allow for score to accumulate by making score state equal to previous score plus current score
-  // function calculateScore() {
-  //   setTimeout(() => {
-  //     setScore(score + turn.score);
-  //   }, 5000); //Calculate cumulative score after 5 seconds (length of time it takes for pop up to disappear)
   // }
 
   return {
