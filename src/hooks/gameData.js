@@ -68,6 +68,10 @@ export default function useGameData(userID) {
     }
   };
 
+  const playAgain = () => {
+    fetchGameData();
+  };
+
   // // used by  summary to reset all states to initial values.
   // function playAgain() {
   //   setGame(null);
@@ -114,7 +118,8 @@ export default function useGameData(userID) {
   return {
     gameState,
     setGameState,
-    nextTurn
+    nextTurn,
+    playAgain
     // game,
     // turn,
     // popupMessage,
