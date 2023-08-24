@@ -45,9 +45,14 @@ export default function useGameData(userID) {
         }, 4900);
 
         setTimeout(() => {
-          const updatedTurn = gameState.currentTurn + 1;
-          const cumulativeScore = gameState.totalScore + gameState.turns[gameState.currentTurn - 1].score;
-          setGameState(prev => ({ ...prev, currentTurn: updatedTurn, totalScore: cumulativeScore }));
+          if (gameState.currentTurn < 3) {
+            const updatedTurn = gameState.currentTurn + 1;
+            const cumulativeScore = gameState.totalScore + gameState.turns[gameState.currentTurn - 1].score;
+            setGameState(prev => ({ ...prev, currentTurn: updatedTurn, totalScore: cumulativeScore }));
+          } else {
+            const cumulativeScore = gameState.totalScore + gameState.turns[gameState.currentTurn - 1].score;
+            setGameState(prev => ({ ...prev, totalScore: cumulativeScore, finishedGame: true }));
+          }
         }, 5000);
 
         console.log(result);
