@@ -11,12 +11,13 @@ export default function Game(props) {
   const {
     gameState,
     setGameState,
-    nextTurn
+    nextTurn,
+    playAgain
   } = useGameData(props.userID);
 
   return (
     <main>
-      {gameState && (
+      {(gameState && !gameState.finishedGame) && (
         <>
           <GameStatus turnNumber={gameState.currentTurn} turnScore={gameState.totalScore} />
           <QuestionMap gameState={gameState} />
@@ -24,9 +25,10 @@ export default function Game(props) {
           <Button onClick={nextTurn} className="button-game-answer" title="Answer" />
           <Popup gameState={gameState} />
           <NullPositionError gameState={gameState} />
-
-          {/* {summary && (<GameSummary game={game} playAgain={playAgain} />)} */}
         </>
+      )}
+      {(gameState && gameState.finishedGame) && (
+        <GameSummary gameState={gameState} playAgain={playAgain} />
       )}
     </main>
   );
