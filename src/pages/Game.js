@@ -21,7 +21,7 @@ export default function Game(props) {
           <GameStatus turnNumber={gameState.currentTurn} turnScore={gameState.totalScore} />
           <QuestionMap gameState={gameState} />
           <AnswerMap gameState={gameState} setGameState={setGameState} />
-          <Button onClick={nextTurn} className="button-game-answer" />
+          <Button onClick={nextTurn} className="button-game-answer" title="Answer" />
           <Popup gameState={gameState} />
           <NullPositionError gameState={gameState} />
 
