@@ -3,13 +3,6 @@ import axios from '../api/axios';
 
 export default function useGameData(userID) {
   const [gameState, setGameState] = useState(null);
-  // const [popupMessage, setPopupMessage] = useState(null);
-  // const [popupMessageClass, setPopupMessageClass] = useState(null);
-  // const [position, setPosition] = useState(null); //Lifted position state into game component so that it can be passed to answer map, as well as answer button to prevent answer button switching turn if no position set.
-  // const [errorState, setErrorState] = useState(null); //Error state to handle conditional rendering of error message if user did not select location (position null)
-  // const [summary, setSummary] = useState(null);
-  // const [score, setScore] = useState(0); //Score state which will be dynamically adjusted per turn and shown in game status component
-  // const [gameNumber, setGameNumber] = useState(1);
 
   const fetchGameData = async () => {
     try {
@@ -72,63 +65,10 @@ export default function useGameData(userID) {
     fetchGameData();
   };
 
-  // // used by  summary to reset all states to initial values.
-  // function playAgain() {
-  //   setGame(null);
-  //   setTurn(null);
-  //   setPopupMessage(null);
-  //   setPopupMessageClass(null);
-  //   setPosition(null);
-  //   setErrorState(null);
-  //   setSummary(null);
-  //   setScore(0);
-  //   setGameNumber(gameNumber + 1);
-  // }
-
-  // // showing congrats popup with score
-  // function showResult(messageKm, messageKmScore) {
-  //   setPopupMessageClass("hiddenMessage"); // adding class attribute to make message invisible while on the screen 
-  //   setPopupMessage(messageKm);
-  //   setTimeout(() => {
-  //     setPopupMessageClass("visibleMessage"); // adding class attribute to make it visible 
-  //     setPopupMessage(messageKm);
-  //   }, 1200);
-
-  //   setTimeout(() => {
-  //     setPopupMessage(messageKmScore);
-  //   }, 3000);
-
-  //   setTimeout(() => {
-  //     setPopupMessage(null);
-  //     // check the last round to show the gameSummary component
-  //     if (turn === game.turns[2]) {
-  //       setSummary(game);
-  //     }
-
-  //   }, 5000); // remove popup from the screen
-  // }
-
-  // function showError() {
-  //   setErrorState("Error");
-  //   setTimeout(() => {
-  //     setErrorState(null);
-  //   }, 3100);
-  // }
-
   return {
     gameState,
     setGameState,
     nextTurn,
     playAgain
-    // game,
-    // turn,
-    // popupMessage,
-    // popupMessageClass,
-    // position, setPosition,
-    // errorState,
-    // summary,
-    // score,
-    // playAgain,
-    // nextTurn
   };
 };
