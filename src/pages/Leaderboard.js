@@ -1,55 +1,52 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import axios from "../api/axios";
 import "./Leaderboard.css";
 
-import Leaderboard_Video_Pexels from './leaderboard.mp4';
+import AuthContext from "../context/AuthProvider";
+
+import Leaderboard_Video_Pexels from "./leaderboard.mp4";
 
 export default function Leaderboard(props) {
-  const [state, setState] = useState([]);
+  const [leaderboardState, setLeaderboardState] = useState([]);
+  const { loggedInUser } = useContext(AuthContext);
+
+  const fetchData = async () => {
+    try {
+      const leaderboardResult = await axios.get("api/users/scores");
+      setLeaderboardState(leaderboardResult.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    async function fetchData() {
-      // use get request to load data from db to state array
-      let response = await fetch("http://localhost:8001/api/users/scores");
-      let newData = await response.json();
-      setState(newData);
-    }
-
     fetchData();
   }, []);
 
   //this function returns object of each element of state array as a line of html 
-  let scoreElements = state.map((line, index) => {
+  const scoreElements = leaderboardState.map((user, index) => {
     return (
       <li className="leader" key={index}>
         <div>{index + 1}</div>
         <div>
-          {(line.user_id === props.userID && (<span className="flag">🏁&nbsp;</span>))}
-          {line.user_name}
-          {(line.user_id === props.userID && (<span className="flag">🏁&nbsp;</span>))}
-
+          {(user.user_id === loggedInUser.id && (<span className="flag">🏁&nbsp;</span>))}
+          {user.user_name}
+          {(user.user_id === loggedInUser.id && (<span className="flag">🏁&nbsp;</span>))}
         </div>
-        <div>{line.total_for_game}</div>
+        <div>{user.highest_game_score}</div>
       </li>);
   });
-
-  // find the logged in user in the state array
-  let currentUserIndex = state.findIndex((x) => x.user_id === props.userID);
-  let currentUser = state[currentUserIndex];
-
 
   return (
     <div>
       <ul className="leaderList">
-
         <li className="leader header" >
           <div>Rank</div>
           <div>User</div>
           <div>Best Score</div>
         </li>
-
         {scoreElements}
       </ul>
-
       <video className="leaderboardBackground" src={Leaderboard_Video_Pexels} autoPlay loop muted />
     </div>
   );
