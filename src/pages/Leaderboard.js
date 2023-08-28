@@ -3,6 +3,7 @@ import axios from "../api/axios";
 import "./Leaderboard.css";
 
 import AuthContext from "../context/AuthProvider";
+import Navbar from "../components/Navbar";
 
 import Leaderboard_Video_Pexels from "./leaderboard.mp4";
 
@@ -39,6 +40,7 @@ export default function Leaderboard(props) {
 
   return (
     <div>
+      <Navbar />
       <ul className="leaderList">
         <li className="leader header" >
           <div>Rank</div>
