@@ -10,7 +10,7 @@ const constructBackendURL = () => {
   const hostname = window.location.hostname;
   const port = 8001;
 
-  let backendURL = '';
+  let backendURL = "";
 
   if (isValidHostname(hostname)) {
     const sanitizedHostname = sanitizeHostname(hostname);
@@ -26,8 +26,8 @@ const constructBackendURL = () => {
 };
 
 const getBackendURL = () => {
-  if (process.env.NODE_ENV === 'development') {
-    return constructBackendURL;
+  if (process.env.NODE_ENV === "development") {
+    return constructBackendURL();
   } else {
     // For production
     return process.env.REACT_APP_BACKEND_URL; // Set this variable in your Netlify environment
