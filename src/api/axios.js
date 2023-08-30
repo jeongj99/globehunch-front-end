@@ -1,7 +1,7 @@
 import axios from 'axios';
-import constructBackendURL from '../backendUtils';
+import getBackendURL from '../backendUtils';
 
 export default axios.create({
-  baseURL: constructBackendURL(),
+  baseURL: getBackendURL(),
   withCredentials: true,
 });

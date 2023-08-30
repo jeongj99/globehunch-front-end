@@ -25,4 +25,13 @@ const constructBackendURL = () => {
   return backendURL;
 };
 
-export default constructBackendURL;
+const getBackendURL = () => {
+  if (process.env.NODE_ENV === 'development') {
+    return constructBackendURL;
+  } else {
+    // For production
+    return process.env.REACT_APP_BACKEND_URL; // Set this variable in your Netlify environment
+  }
+};
+
+export default getBackendURL;
